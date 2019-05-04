@@ -7,8 +7,22 @@
 
 import scrapy
 
+from spiders_python.commonTools.common import CONFESS
 
-class SpidersPythonItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+
+class BaseItem(scrapy.Item):
+    def toStr(self):
+        str = ''
+        for key, value in self.items():
+            str += '%s:%s,' % (key, value)
+        return str
+
+
+class ConfessItem(BaseItem):
+    itemType = CONFESS
+    userId = scrapy.Field()
+    context = scrapy.Field()
+    userName = scrapy.Field()
+    image_urls = scrapy.Field()
+    image_paths = scrapy.Field()
+
